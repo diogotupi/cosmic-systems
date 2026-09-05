@@ -1,0 +1,181 @@
+:root{
+  --bg: #0b1020;
+  --bg-alt: #0f1428;
+  --text: #e6e8f0;
+  --muted: #a5adcb;
+  --primary: #6b46c1; /* overridden by brand.json */
+  --accent: #22d3ee;  /* overridden by brand.json */
+  --card: #121936;
+  --border: #26304c;
+  --shadow: rgba(0,0,0,0.35);
+}
+
+*{ box-sizing: border-box }
+html, body{ height: 100% }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 70% -10%, rgba(34,211,238,0.15), transparent 60%),
+              radial-gradient(800px 400px at -10% -10%, rgba(107,70,193,0.25), transparent 60%),
+              var(--bg);
+  line-height: 1.6;
+}
+
+.container{
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.site-header{
+  position: sticky;
+  top:0;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(11,16,32,0.9), rgba(11,16,32,0.6) 60%, transparent);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: saturate(1.2) blur(8px);
+}
+.site-header .container{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px 0;
+}
+.brand{ display:flex; align-items:center; gap:12px }
+.logo{
+  width: 34px; height: 34px; border-radius: 8px;
+  background: radial-gradient(120% 120% at 20% 20%, var(--accent), var(--primary));
+  box-shadow: 0 8px 22px var(--shadow), inset 0 0 0 1px rgba(255,255,255,0.08);
+  display:grid; place-items:center; font-size:18px;
+}
+.brand-name{ font-size:16px }
+.brand-tagline{ color: var(--muted); display:block; font-size:12px; margin-top:-2px }
+.nav{ display:flex; align-items:center; gap:16px }
+.nav a{ color: var(--text); text-decoration:none; opacity:0.9 }
+.nav a:hover{ opacity:1; text-decoration: underline; text-underline-offset: 4px }
+
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  border: 1px solid var(--border);
+  color: var(--text); text-decoration: none;
+  padding: 10px 14px; border-radius: 10px;
+  background: #141b37;
+  box-shadow: 0 4px 14px var(--shadow);
+  transition: transform .08s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,0.12) }
+.btn:active{ transform: translateY(0) }
+.btn-primary{
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primary), white 5%), var(--primary));
+  border-color: color-mix(in oklab, var(--primary), black 30%);
+}
+.btn-secondary{
+  background: #141b37;
+}
+.btn-accent{
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent), white 5%), var(--accent));
+  color: #041016;
+  border-color: color-mix(in oklab, var(--accent), black 30%);
+}
+.btn-whatsapp{
+  background: linear-gradient(180deg, #2bd46e, #17b158);
+  color:#041809; border-color: #0f6b36;
+}
+.btn-lg{ padding: 14px 18px; font-weight: 600; }
+
+.hero{
+  padding: 56px 0 28px;
+}
+.hero-grid{
+  display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items:center;
+}
+.hero h1{
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+.gradient{
+  display:block;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.hero-sub{ color: var(--muted); margin: 6px 0 18px }
+.hero-ctas{ display:flex; gap: 12px; flex-wrap: wrap }
+.hero-art{
+  height: 280px;
+  position: relative;
+  background: radial-gradient(400px 220px at 70% 20%, rgba(34,211,238,0.15), transparent 60%), #0e1530;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 20px 50px var(--shadow);
+}
+.stars{ position:absolute; inset:0; background-image: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6), transparent), radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.4), transparent), radial-gradient(1px 1px at 80% 40%, rgba(255,255,255,0.5), transparent) }
+.planet{ position:absolute; right:-40px; bottom:-40px; width: 200px; height:200px; border-radius:50%; background: radial-gradient(120% 120% at 20% 20%, var(--accent), var(--primary)); filter: blur(0.2px); }
+.orbit{ position:absolute; left:-40px; top:-40px; width: 160px; height:160px; border-radius:50%; border: 2px dashed rgba(255,255,255,0.08) }
+
+.section{ padding: 48px 0 }
+.section.alt{ background: var(--bg-alt); border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06) }
+.section h2{ font-size: 26px; margin: 0 0 16px }
+.cards{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 10px 30px var(--shadow), inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+.card h3{ margin: 6px 0 8px; font-size: 18px }
+.card p{ color: var(--muted); margin: 0 0 12px }
+.card .card-link{ color: var(--accent); text-decoration: none }
+.card .card-link:hover{ text-decoration: underline; text-underline-offset: 3px }
+.card.highlight{ border-color: color-mix(in oklab, var(--accent), black 40%); background: linear-gradient(180deg, rgba(34,211,238,0.12), rgba(20,27,55,1) 40%), var(--card) }
+.card-badge{
+  display:inline-block; font-size: 11px; letter-spacing: .4px; font-weight: 700;
+  padding: 4px 8px; border-radius: 20px; background: rgba(34,211,238,0.12); color: var(--accent);
+  border: 1px solid color-mix(in oklab, var(--accent), black 40%);
+  margin-bottom: 8px;
+}
+.credentials{
+  margin: 0 0 12px; padding-left: 16px; color: var(--muted)
+}
+.grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px }
+.list{ margin:0; padding-left: 0; list-style: none; color: var(--text) }
+.list li{ background: #121936; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px }
+
+.steps{ margin: 0; padding-left: 0; list-style:none; display:grid; gap: 12px }
+.steps li{ display:flex; gap: 12px; align-items:flex-start; background: #121936; border: 1px solid var(--border); border-radius: 12px; padding: 12px }
+.step-num{
+  width: 30px; height: 30px; border-radius: 8px; display:grid; place-items:center; font-weight: 700;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primary), white 4%), var(--primary));
+  border: 1px solid color-mix(in oklab, var(--primary), black 30%);
+}
+
+.cta{ text-align:center }
+.cta-box{
+  background: linear-gradient(180deg, rgba(34,211,238,0.12), rgba(20,27,55,1) 60%), var(--card);
+  border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+  box-shadow: 0 14px 36px var(--shadow);
+}
+.wa-icon{ filter: drop-shadow(0 2px 12px rgba(0,0,0,0.4)) }
+.cta-hint{ color: var(--muted); font-size: 12px; margin-top: 10px }
+
+.site-footer{
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 18px 0 28px; color: var(--muted)
+}
+.footer-grid{ display:flex; align-items:center; justify-content:space-between; gap: 12px }
+.footer-grid .right a{ color: var(--muted); text-decoration:none }
+.footer-grid .right a:hover{ text-decoration: underline; text-underline-offset: 3px }
+
+@media (max-width: 960px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .hero-art{ order: -1; height: 220px }
+  .cards{ grid-template-columns: 1fr 1fr }
+}
+@media (max-width: 640px){
+  .nav{ display:none }
+  .cards{ grid-template-columns: 1fr }
+  .grid-2{ grid-template-columns: 1fr }
+}
