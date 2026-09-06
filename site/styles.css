@@ -141,31 +141,29 @@ body{
   grid-column: 1 / -1;
 }
 .video-carousel{
-  margin: 4px 0 14px;
-}
-.video-carousel-track{
-  position: relative;
+  margin: 4px 0 10px;
   display: grid;
-  border-radius: 14px;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.video-carousel-viewport{
   overflow: hidden;
+  border-radius: 14px;
   border: 1px solid var(--border);
   background: #07090f;
-  min-height: 320px;
+}
+.video-carousel-track{
+  display: flex;
+  transition: transform .35s ease;
+  will-change: transform;
 }
 .video-slide{
   margin: 0;
-  grid-area: 1 / 1;
+  flex: 0 0 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(18px);
-  transition: opacity .35s ease, transform .35s ease;
-}
-.video-slide.is-active{
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(0);
 }
 .demo-video{
   width: 100%;
@@ -190,13 +188,6 @@ body{
   color: var(--muted);
   font-size: 13px;
 }
-.video-carousel-controls{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 10px;
-}
 .carousel-btn{
   width: 36px;
   height: 36px;
@@ -211,9 +202,14 @@ body{
 .carousel-btn:hover{
   border-color: rgba(255,255,255,0.16);
 }
+.carousel-btn-side{
+  flex-shrink: 0;
+}
 .carousel-dots{
   display: flex;
   gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
 }
 .carousel-dot{
   width: 9px;
@@ -227,6 +223,46 @@ body{
 .carousel-dot.is-active{
   background: var(--accent);
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%);
+}
+/* Desktop: show both demos side by side */
+@media (min-width: 900px){
+  .video-carousel{
+    grid-template-columns: 1fr;
+  }
+  .carousel-btn-side,
+  .carousel-dots{
+    display: none;
+  }
+  .video-carousel-viewport{
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+  .video-carousel-track{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    transform: none !important;
+  }
+  .video-slide{
+    min-width: 0;
+    flex: initial;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #07090f;
+  }
+  .demo-video{
+    max-height: 420px;
+  }
+}
+@media (max-width: 640px){
+  .video-carousel{
+    grid-template-columns: 1fr;
+  }
+  .carousel-btn-side{
+    display: none;
+  }
 }
 .credentials{
   margin: 0 0 12px; padding-left: 16px; color: var(--muted)

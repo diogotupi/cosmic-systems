@@ -47,41 +47,64 @@ loadBrand();
 
 function initVideoCarousels() {
   document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const root = carousel.closest('.card') || carousel.parentElement;
+    const track = carousel.querySelector('.video-carousel-track');
     const slides = Array.from(carousel.querySelectorAll('.video-slide'));
-    const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
+    const dots = Array.from((root || document).querySelectorAll('[data-carousel-dot]')).filter(
+      (dot) => root && root.contains(dot)
+    );
     const prev = carousel.querySelector('[data-carousel-prev]');
     const next = carousel.querySelector('[data-carousel-next]');
-    if (slides.length === 0) return;
+    if (!track || slides.length === 0) return;
 
-    let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
+    let index = 0;
+    const mq = window.matchMedia('(min-width: 900px)');
 
-    const setIndex = (nextIndex) => {
-      index = (nextIndex + slides.length) % slides.length;
+    const playVisible = () => {
+      const sideBySide = mq.matches;
       slides.forEach((slide, i) => {
-        const active = i === index;
-        slide.classList.toggle('is-active', active);
         const video = slide.querySelector('video');
         if (!video) return;
-        if (active) {
-          video.currentTime = 0;
+        if (sideBySide || i === index) {
           video.play().catch(() => {});
         } else {
           video.pause();
         }
       });
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
     };
 
-    prev?.addEventListener('click', () => setIndex(index - 1));
-    next?.addEventListener('click', () => setIndex(index + 1));
+    const setIndex = (nextIndex) => {
+      index = ((nextIndex % slides.length) + slides.length) % slides.length;
+      if (!mq.matches) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+      } else {
+        track.style.transform = 'none';
+      }
+      playVisible();
+      dots.forEach((dot) => {
+        const active = Number(dot.getAttribute('data-carousel-dot')) === index;
+        dot.classList.toggle('is-active', active);
+      });
+    };
+
+    prev?.addEventListener('click', (e) => {
+      e.preventDefault();
+      setIndex(index - 1);
+    });
+    next?.addEventListener('click', (e) => {
+      e.preventDefault();
+      setIndex(index + 1);
+    });
     dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
         const i = Number(dot.getAttribute('data-carousel-dot'));
         if (!Number.isNaN(i)) setIndex(i);
       });
     });
+    mq.addEventListener('change', () => setIndex(index));
 
-    setIndex(index);
+    setIndex(0);
   });
 }
 
