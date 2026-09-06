@@ -12,6 +12,8 @@ site/
   index.html     ← página única (hero, cases, o que construímos, como funciona, CTA)
   styles.css     ← estilos (cores podem ser sobrescritas por brand.json)
   script.js      ← carrega brand.json e preenche o conteúdo
+  videos/        ← demos Remotion do Cash Stack (settling + insígnias)
+remotion-cashstack/  ← projeto Remotion das demos
 .github/workflows/deploy.yml  ← workflow que publica no GitHub Pages
 ```
 
