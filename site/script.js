@@ -44,3 +44,45 @@ async function loadBrand() {
 }
 
 loadBrand();
+
+function initVideoCarousels() {
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll('.video-slide'));
+    const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
+    const prev = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
+    if (slides.length === 0) return;
+
+    let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
+
+    const setIndex = (nextIndex) => {
+      index = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === index;
+        slide.classList.toggle('is-active', active);
+        const video = slide.querySelector('video');
+        if (!video) return;
+        if (active) {
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+    };
+
+    prev?.addEventListener('click', () => setIndex(index - 1));
+    next?.addEventListener('click', () => setIndex(index + 1));
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const i = Number(dot.getAttribute('data-carousel-dot'));
+        if (!Number.isNaN(i)) setIndex(i);
+      });
+    });
+
+    setIndex(index);
+  });
+}
+
+initVideoCarousels();

@@ -66,9 +66,53 @@
               <a class="btn btn-accent" href="https://cosmic-escritorio.vercel.app" target="_blank" rel="noopener" data-brand="demoCtaLabel">Testar a demo</a>
             </article>
 
-            <article class="card">
+            <article class="card card-feature">
+              <div class="card-badge">DEMO EM VÍDEO</div>
               <h3>Cash Stack</h3>
-              <p>Plataforma para gestão financeira pessoal com foco em fluxo de caixa.</p>
+              <p>Controle de cacife para cash game entre amigos — settling automático, achievements e insígnias.</p>
+              <div class="video-carousel" data-carousel>
+                <div class="video-carousel-track">
+                  <figure class="video-slide is-active">
+                    <video
+                      class="demo-video"
+                      src="./videos/settling.mp4"
+                      poster="./videos/settling-poster.png"
+                      muted
+                      loop
+                      playsinline
+                      autoplay
+                      preload="metadata"
+                    ></video>
+                    <figcaption>
+                      <strong>Settling</strong>
+                      <span>Mínimo de transferências ao fechar a mesa</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="video-slide">
+                    <video
+                      class="demo-video"
+                      src="./videos/insignias.mp4"
+                      poster="./videos/insignias-poster.png"
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                    ></video>
+                    <figcaption>
+                      <strong>Insígnias</strong>
+                      <span>Achievements eternos e badges que você carrega enquanto sustentar</span>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="video-carousel-controls">
+                  <button type="button" class="carousel-btn" data-carousel-prev aria-label="Vídeo anterior">‹</button>
+                  <div class="carousel-dots" role="tablist" aria-label="Vídeos Cash Stack">
+                    <button type="button" class="carousel-dot is-active" data-carousel-dot="0" aria-label="Settling"></button>
+                    <button type="button" class="carousel-dot" data-carousel-dot="1" aria-label="Insígnias"></button>
+                  </div>
+                  <button type="button" class="carousel-btn" data-carousel-next aria-label="Próximo vídeo">›</button>
+                </div>
+              </div>
               <a class="card-link" href="https://www.thecashstack.com" target="_blank" rel="noopener">www.thecashstack.com</a>
             </article>
 
