@@ -137,6 +137,133 @@ body{
   border: 1px solid color-mix(in oklab, var(--accent), black 40%);
   margin-bottom: 8px;
 }
+.card-feature{
+  grid-column: 1 / -1;
+}
+.video-carousel{
+  margin: 4px 0 10px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.video-carousel-viewport{
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #07090f;
+}
+.video-carousel-track{
+  display: flex;
+  transition: transform .35s ease;
+  will-change: transform;
+}
+.video-slide{
+  margin: 0;
+  flex: 0 0 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.demo-video{
+  width: 100%;
+  aspect-ratio: 1080 / 1350;
+  max-height: 520px;
+  object-fit: contain;
+  background: #07090f;
+  display: block;
+}
+.video-slide figcaption{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  background: rgba(10,14,28,0.92);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.video-slide figcaption strong{
+  font-size: 14px;
+}
+.video-slide figcaption span{
+  color: var(--muted);
+  font-size: 13px;
+}
+.carousel-btn{
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #141b37;
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.carousel-btn:hover{
+  border-color: rgba(255,255,255,0.16);
+}
+.carousel-btn-side{
+  flex-shrink: 0;
+}
+.carousel-dots{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.carousel-dot{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: rgba(255,255,255,0.22);
+  cursor: pointer;
+}
+.carousel-dot.is-active{
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%);
+}
+/* Desktop: show both demos side by side */
+@media (min-width: 900px){
+  .video-carousel{
+    grid-template-columns: 1fr;
+  }
+  .carousel-btn-side,
+  .carousel-dots{
+    display: none;
+  }
+  .video-carousel-viewport{
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+  .video-carousel-track{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    transform: none !important;
+  }
+  .video-slide{
+    min-width: 0;
+    flex: initial;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #07090f;
+  }
+  .demo-video{
+    max-height: 420px;
+  }
+}
+@media (max-width: 640px){
+  .video-carousel{
+    grid-template-columns: 1fr;
+  }
+  .carousel-btn-side{
+    display: none;
+  }
+}
 .credentials{
   margin: 0 0 12px; padding-left: 16px; color: var(--muted)
 }
